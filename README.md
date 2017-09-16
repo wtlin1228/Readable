@@ -4,6 +4,6 @@
 
 # Run Server
 
-` webpack -w `
+` npm run build `
 
 ` npm start `
