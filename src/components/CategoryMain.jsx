@@ -6,7 +6,7 @@ import { Layout } from 'antd';
 
 const { Content } = Layout;
 
-class IndexMain extends React.Component {
+class CategoryMain extends React.Component {
   constructor() {
     super();
   }
@@ -14,11 +14,11 @@ class IndexMain extends React.Component {
   render() {
     return (
       <Content>
-        <p>Hi, This is Root</p>
-        <Link to="/category">Link to Category View </Link>
+        <p>Hi, This is Category</p>
+        <Link to="/">Link to Root View </Link>
       </Content>
     );
   }
 }
 
-export default IndexMain
+export default CategoryMain

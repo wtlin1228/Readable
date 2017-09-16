@@ -4,19 +4,20 @@ import { Layout } from 'antd'
 
 import WebHeader from '../components/WebHeader'
 import WebFooter from '../components/WebFooter'
-import IndexMain from '../components/IndexMain'
+import CategoryMain from '../components/CategoryMain'
 
-class Index extends React.Component {
+class Category extends React.Component {
   render() {
 
     return (
       <Layout>
         <WebHeader />
-        <IndexMain />
+        <CategoryMain />
         <WebFooter />
       </Layout>
+
     )
   }
 }
 
-export default Index
+export default Category
