@@ -7,8 +7,8 @@ import ApiGetCategory from '../services/api'
 // Final Version
 export function* worker(action) {
   console.log('Saga category, GetApiWorker');
-  const categories = yield call(ApiGetCategory, action.payload);
-  yield put({ type: types.GET_CATEGORY_DONE, payload: categories})
+  const response = yield call(ApiGetCategory, action.payload);
+  yield put({ type: types.GET_CATEGORY_DONE, payload: response.categories})
 }
 
 export function* watchGetCategory() {

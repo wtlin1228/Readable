@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd';
-
+import HeaderMenu from './HeaderMenu'
 const { Header } = Layout;
 
 class WebHeader extends React.Component {
@@ -11,7 +11,9 @@ class WebHeader extends React.Component {
   render() {
     return (
       <Header>
-        <p>Hi, This is Header</p>
+        <row>
+          <HeaderMenu />
+        </row>
       </Header>
     );
   }
