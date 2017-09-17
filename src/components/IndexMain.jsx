@@ -51,7 +51,6 @@ class IndexMain extends React.Component {
 
   handleClickButton() {
     console.log('Main, call getAllCategories("^_^")');
-    console.log(this.props.getAllCategory);
     this.props.getAllCategory('^_^')
   }
 

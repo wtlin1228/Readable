@@ -1,16 +1,14 @@
-import { take, takeEvery, put, call, fork, select, all} from 'redux-saga/effects'
+import { takeLatest, put, call, fork, select, all} from 'redux-saga/effects'
 
-import * as actions from '../actions'
 import * as types from '../constants/actionTypes'
 import ApiGetCategory from '../services/api'
 
+export function* worker(action) {
+  const categories = yield call(ApiGetCategory, action.payload);
+  console.log(categories);
+  yield put({ type: types.GET_CATEGORY_DONE, payload: categories})
+}
+
 export function* watchGetCategory() {
-  while(true) {
-    const { payload } = yield take(actions.getAllCategory);
-    const categories = yield all([
-      call(ApiGetCategory)
-    ]);
-    console.log('before yield put ', categories[0]);
-    yield put({ type: types.GET_CATEGORY, payload: categories[0] })
-  }
+  yield takeLatest(types.GET_CATEGORY, worker);
 }

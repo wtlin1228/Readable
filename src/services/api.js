@@ -1,6 +1,6 @@
 
-export default function ApiGetCategory() {
-  console.log('Service, call fetch');
+export default function ApiGetCategory(payload) {
+  console.log('Service, call fetch, payload: ', payload);
   return(
     fetch(
       'http://localhost:3001/categories',
