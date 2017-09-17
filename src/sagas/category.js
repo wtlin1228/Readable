@@ -2,7 +2,7 @@ import { delay } from 'redux-saga'
 import { takeLatest, take, put, call, fork, select, all, cancel} from 'redux-saga/effects'
 
 import * as types from '../constants/actionTypes'
-import ApiGetCategory from '../services/api'
+import { ApiGetCategory } from '../services/api'
 
 // Final Version
 export function* worker(action) {

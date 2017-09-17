@@ -19,21 +19,19 @@ class IndexMain extends React.Component {
 
   }
 
-
-
   handleClickButton() {
     console.log('Main, call getAllCategories("^_^")');
-    this.props.getAllCategory('^_^')
+    this.props.getAllPosts('^_^')
   }
 
   render() {
-    console.log(this.props.categoryReducer.categories);
+    console.log(this.props.postReducer);
 
     return (
       <Content>
         <p>Hi, This is Root</p>
         <Link to="/category">Link to Category View </Link>
-        <Button type="primary" onClick={() => this.handleClickButton()}>Get all Category</Button>
+        <Button type="primary" onClick={() => this.handleClickButton()}>Get all Posts</Button>
 
       </Content>
     );
@@ -42,7 +40,7 @@ class IndexMain extends React.Component {
 
 const mapStateToProps = store => (
   {
-    categoryReducer: store.categoryReducer
+    postReducer: store.postReducer
   }
 );
 
