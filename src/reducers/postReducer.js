@@ -9,15 +9,14 @@ export default function postReducer(state=initState, action) {
     case types.GET_ALL_POSTS:
       console.log('Reducer, GET_ALL_POSTS, payload: ', action.payload);
       return {
-        ...state,
-        categories: action.payload
+        ...state
       };
 
     case types.GET_ALL_POSTS_DONE:
       console.log('Reducer, GET_ALL_POSTS_DONE, payload: ', action.payload);
       return {
         ...state,
-        categories: action.payload
+        posts: action.payload
       };
 
     default:

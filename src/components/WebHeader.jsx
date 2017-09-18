@@ -9,8 +9,12 @@ class WebHeader extends React.Component {
   }
 
   render() {
+    const headerStyle = {
+      'marginBottom': '20px',
+    };
+
     return (
-      <Header>
+      <Header style={headerStyle}>
         <row>
           <HeaderMenu />
         </row>
