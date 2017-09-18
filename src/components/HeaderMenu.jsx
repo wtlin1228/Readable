@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router'
+
+import { Link, withRouter } from 'react-router-dom';
 import { Col, Menu, Icon } from 'antd';
 import * as actionCreators from '../actions'
 
 class HeaderMenu extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       current: '',
@@ -33,7 +36,8 @@ class HeaderMenu extends React.Component {
     const menuItem = this.props.categoryReducer.categories.map( (category) => {
       return(
         <Menu.Item key={category['name']}>
-          <Icon type="tag-o" />{category['name']}
+          <Link to='/category'/>
+          <Icon type="tag-o"/>{category['name']}
         </Menu.Item>
       )
     });
