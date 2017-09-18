@@ -9,7 +9,7 @@ class PostTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllPosts(this.props.category)
+    this.props.getAllPosts('all');
   }
 
   render() {
@@ -21,7 +21,10 @@ class PostTable extends React.Component {
       { title: 'timestamp', dataIndex: 'timestamp', key: 'timestamp', sorter: (a, b) => a.timestamp - b.timestamp,},
     ];
 
-    const data = this.props.postReducer.posts;
+    const data = this.props.postReducer.posts.filter((post) => {
+      if(this.props.category == 'all') return true;
+      return post.category == this.props.navigationReducer.navigate_category
+    });
 
     return (
       <Row type="flex" justify="center">
@@ -39,7 +42,8 @@ class PostTable extends React.Component {
 
 const mapStateToProps = store => (
   {
-    postReducer: store.postReducer
+    postReducer: store.postReducer,
+    navigationReducer: store.navigationReducer,
   }
 );
 

@@ -6,8 +6,14 @@ import { ApiGetPosts } from '../services/api'
 export function* worker(action) {
   const response = yield call(ApiGetPosts, action.category);
   response.map((post, index) => {post['key'] = index+1; return post} );
-  console.log("Get post: ", response);
-  yield put({ type: types.GET_ALL_POSTS_DONE, payload: response})
+
+  // sort the posts by voteScore
+  response.sort(function(a, b){return b['voteScore'] - a['voteScore'] });
+
+  yield put({
+    type: types.GET_ALL_POSTS_DONE,
+    posts: response,
+  })
 }
 
 export function* watchGetAllPosts() {

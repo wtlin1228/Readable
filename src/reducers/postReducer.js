@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes'
 
 const initState = {
-  posts: []
+  posts: [],
 };
 
 export default function postReducer(state=initState, action) {
@@ -14,7 +14,7 @@ export default function postReducer(state=initState, action) {
     case types.GET_ALL_POSTS_DONE:
       return {
         ...state,
-        posts: action.payload
+        posts: action.posts,
       };
 
     default:
