@@ -40,6 +40,7 @@ class HeaderMenu extends React.Component {
 
     const menu = [
       <Menu
+        key="headerMenu"
         onClick={this.handleClick}
         selectedKeys={[this.state.current]}
         mode="horizontal"

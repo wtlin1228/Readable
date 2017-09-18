@@ -9,7 +9,7 @@ class PostTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllPosts()
+    this.props.getAllPosts(this.props.category)
   }
 
   render() {
@@ -20,27 +20,6 @@ class PostTable extends React.Component {
       { title: 'voteScore', dataIndex: 'voteScore', key: 'voteScore', sorter: (a, b) => a.voteScore - b.voteScore,},
       { title: 'timestamp', dataIndex: 'timestamp', key: 'timestamp', sorter: (a, b) => a.timestamp - b.timestamp,},
     ];
-
-    const data_default = [
-      { key: 1,
-        timestamp: 1467166872634,
-        title: 'Udacity is the best place to learn React',
-        description: 'Everyone says so after all.',
-        author: 'thingtwo',
-        category: 'react',
-        voteScore: 6
-      },
-      { key: 2,
-        timestamp: 1468479767190,
-        title: 'Learn Redux in 10 minutes!',
-        description: 'Just kidding. It takes more than 10 minutes to learn technology.',
-        author: 'thingone',
-        category: 'redux',
-        voteScore: -5,
-      },
-    ];
-
-    console.log(this.props.postReducer.posts);
 
     const data = this.props.postReducer.posts;
 

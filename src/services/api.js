@@ -1,5 +1,4 @@
-export function ApiGetCategory(payload) {
-  console.log('Service, call fetch categories, payload: ', payload);
+export function ApiGetCategory() {
   return(
     fetch(
       'http://localhost:3001/categories',
@@ -20,17 +19,33 @@ export function ApiGetCategory(payload) {
       }
     }).then((response) => {
       const data = response.json();
-      console.log('In service ', data);
       return data;
     })
   )
 }
 
-export function ApiGetPosts(payload) {
-  console.log('Service, call fetch posts, payload: ', payload);
+export function ApiGetPosts(category) {
+  let endpoint = '';
+  switch(category) {
+    case 'all':
+      endpoint = '/posts';
+      break;
+    case 'react':
+      endpoint = '/react/posts';
+      break;
+    case 'redux':
+      endpoint = '/redux/redux';
+      break;
+    case 'udacity':
+      endpoint = '/udacity/udacity';
+      break;
+    default:
+      endpoint = '/posts';
+  }
+
   return(
     fetch(
-      'http://localhost:3001/posts',
+      'http://localhost:3001' + endpoint,
       {
         headers: { 'Authorization': 'wtlin' },
         accept: 'application/json',
@@ -48,7 +63,6 @@ export function ApiGetPosts(payload) {
       }
     }).then((response) => {
       const data = response.json();
-      console.log('In service ', data);
       return data;
     })
   )

@@ -7,13 +7,11 @@ const initState = {
 export default function categoryReducer(state=initState, action) {
   switch(action.type) {
     case types.GET_CATEGORY:
-      console.log('Reducer, GET_CATEGORY, payload: ', action.payload);
       return {
         ...state
       };
 
     case types.GET_CATEGORY_DONE:
-      console.log('Reducer, GET_CATEGORY_DONE, payload: ', action.payload);
       return {
         ...state,
         categories: action.payload

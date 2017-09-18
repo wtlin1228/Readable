@@ -5,9 +5,8 @@ import * as types from '../constants/actionTypes'
 import { ApiGetCategory } from '../services/api'
 
 // Final Version
-export function* worker(action) {
-  console.log('Saga category, GetApiWorker');
-  const response = yield call(ApiGetCategory, action.payload);
+export function* worker() {
+  const response = yield call(ApiGetCategory);
   yield put({ type: types.GET_CATEGORY_DONE, payload: response.categories})
 }
 

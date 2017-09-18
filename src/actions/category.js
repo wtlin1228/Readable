@@ -1,9 +1,8 @@
 import * as types from '../constants/actionTypes'
 
-export const getAllCategory = (payload) => (
+export const getAllCategory = () => (
   {
     type: types.GET_CATEGORY,
-    payload
   }
 );
 

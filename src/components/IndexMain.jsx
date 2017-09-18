@@ -24,7 +24,7 @@ class IndexMain extends React.Component {
       <Content>
         {/*<p>Hi, This is Root</p>*/}
         {/*<Link to="/category">Link to Category View </Link>*/}
-        <PostTable />
+        <PostTable category='all'/>
       </Content>
     );
   }
