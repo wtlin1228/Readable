@@ -1,7 +1,9 @@
 import { getAllCategory } from "./category";
 import { getAllPosts } from "./post";
+import { navigate_category } from "./navigation";
 
 export {
   getAllCategory,
-  getAllPosts
+  getAllPosts,
+  navigate_category
 }

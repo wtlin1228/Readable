@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import * as actionCreators from '../actions'
+import { connect } from 'react-redux';
+import PostTable from './PostTable';
 
 import { Layout } from 'antd';
 
@@ -7,18 +9,28 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 
 class CategoryMain extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+  }
+
+  componentDidMount() {
+
   }
 
   render() {
     return (
       <Content>
-        <p>Hi, This is Category</p>
-        <Link to="/">Link to Root View </Link>
+        <PostTable category={this.props.navigationReducer.navigate_category}/>
       </Content>
     );
   }
 }
 
-export default CategoryMain
+const mapStateToProps = store => (
+  {
+    navigationReducer: store.navigationReducer,
+  }
+);
+
+export default connect(mapStateToProps, actionCreators)(CategoryMain)

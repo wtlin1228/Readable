@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router'
+import { Link } from 'react-router-dom';
 
-import { Link, withRouter } from 'react-router-dom';
 import { Col, Menu, Icon } from 'antd';
 import * as actionCreators from '../actions'
 
@@ -23,6 +22,7 @@ class HeaderMenu extends React.Component {
 
   handleClick(e) {
     console.log('click ', e);
+    this.props.navigate_category(e.key);
     this.setState({
       current: e.key,
     });
@@ -46,7 +46,7 @@ class HeaderMenu extends React.Component {
       <Menu
         key="headerMenu"
         onClick={this.handleClick}
-        selectedKeys={[this.state.current]}
+        selectedKeys={this.props.navigationReducer.navigate_category}
         mode="horizontal"
         theme="dark"
         style={menuStyle}
@@ -65,7 +65,8 @@ class HeaderMenu extends React.Component {
 
 const mapStateToProps = store => (
   {
-    categoryReducer: store.categoryReducer
+    categoryReducer: store.categoryReducer,
+    navigationReducer: store.navigationReducer,
   }
 );
 

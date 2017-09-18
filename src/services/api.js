@@ -34,10 +34,10 @@ export function ApiGetPosts(category) {
       endpoint = '/react/posts';
       break;
     case 'redux':
-      endpoint = '/redux/redux';
+      endpoint = '/redux/posts';
       break;
     case 'udacity':
-      endpoint = '/udacity/udacity';
+      endpoint = '/udacity/posts';
       break;
     default:
       endpoint = '/posts';
