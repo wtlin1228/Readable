@@ -180,6 +180,8 @@ class NewPostModal extends React.Component {
               onOk={this.handleOk}
               confirmLoading={confirmLoading}
               onCancel={this.handleCancel}
+              okText='Submit'
+              cancelText='Cancel'
             >
               <div>
                 {select}
