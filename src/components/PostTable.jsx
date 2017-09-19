@@ -33,7 +33,7 @@ class PostTable extends React.Component {
 
     const data = this.props.postReducer.posts.filter((post) => {
       if(this.props.category === 'all') return true;
-      return post.category === this.props.navigationReducer.navigate_category
+      return post.category == this.props.navigationReducer.navigate_category
     });
 
     return (

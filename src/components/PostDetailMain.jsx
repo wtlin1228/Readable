@@ -15,6 +15,8 @@ class PostDetailMain extends React.Component {
   }
 
   render() {
+    const { post, comments } = this.props.postDetailReducer;
+
     return (
       <Content>
         <p>
