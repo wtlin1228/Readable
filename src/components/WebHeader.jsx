@@ -15,9 +15,7 @@ class WebHeader extends React.Component {
 
     return (
       <Header style={headerStyle}>
-        <row>
-          <HeaderMenu />
-        </row>
+        <HeaderMenu />
       </Header>
     );
   }

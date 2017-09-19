@@ -1,8 +1,8 @@
 import React from 'react';
 import * as actionCreators from '../actions'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PostTable from './PostTable';
+import NewPostModal from './NewPostModal';
 
 import { Layout } from 'antd';
 
@@ -22,8 +22,8 @@ class CategoryMain extends React.Component {
   render() {
     return (
       <Content>
+        <NewPostModal />
         <PostTable category={this.props.navigationReducer.navigate_category}/>
-        <div><Link to='/' onClick={() => {this.props.navigate_category('root')}}>back to home</Link></div>
       </Content>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Col, Menu, Icon } from 'antd';
+import { Row, Col, Menu, Icon, Button } from 'antd';
 import * as actionCreators from '../actions'
 
 class HeaderMenu extends React.Component {
@@ -51,14 +51,20 @@ class HeaderMenu extends React.Component {
         theme="dark"
         style={menuStyle}
       >
+        <Menu.Item key='home'>
+          <Link to='/'/>
+          <Icon type="home"/>Home
+        </Menu.Item>
         {menuItem}
       </Menu>
     ];
 
     return (
-      <Col>
-        {menu}
-      </Col>
+      <Row>
+        <Col offset={2} span={24}>
+          {menu}
+        </Col>
+      </Row>
     );
   }
 }
