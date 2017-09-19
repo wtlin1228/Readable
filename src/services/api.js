@@ -68,3 +68,56 @@ export function ApiGetPosts(category) {
   )
 }
 
+export function ApiGetPostDetail(post_id) {
+  return(
+    fetch(
+      'http://localhost:3001/posts/' + post_id,
+      {
+        headers: { 'Authorization': 'wtlin' },
+        accept: 'application/json',
+        method: 'get',
+      }
+    ).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        const error = new Error(`HTTP Error ${response.statusText}`);
+        error.status = response.statusText;
+        error.response = response;
+        console.log(error);
+        throw error;
+      }
+    }).then((response) => {
+      const data = response.json();
+      console.log(data);
+      return data;
+    })
+  )
+}
+
+export function ApiGetPostComments(post_id) {
+  return(
+    fetch(
+      'http://localhost:3001/posts/' + post_id + '/comments',
+      {
+        headers: { 'Authorization': 'wtlin' },
+        accept: 'application/json',
+        method: 'get',
+      }
+    ).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        const error = new Error(`HTTP Error ${response.statusText}`);
+        error.status = response.statusText;
+        error.response = response;
+        console.log(error);
+        throw error;
+      }
+    }).then((response) => {
+      const data = response.json();
+      console.log(data);
+      return data;
+    })
+  )
+}

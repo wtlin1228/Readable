@@ -17,7 +17,7 @@ class PostTable extends React.Component {
   }
 
   handleDetailClick(id) {
-    console.log(id);
+    this.props.getPostDetail(id);
   }
 
   render() {

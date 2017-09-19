@@ -1,5 +1,4 @@
 import React from 'react';
-import * as actionCreators from '../actions'
 import { connect } from 'react-redux';
 import PostTable from './PostTable';
 import NewPostModal from './NewPostModal';

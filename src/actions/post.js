@@ -7,3 +7,9 @@ export const getAllPosts = (category) => (
   }
 );
 
+export const getPostDetail = (post_id) => (
+  {
+    type: types.GET_POST_DETAIL,
+    post_id
+  }
+);
