@@ -1,10 +1,10 @@
 import React from 'react';
 import * as actionCreators from '../actions'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PostTable from './PostTable';
+import NewPostModal from './NewPostModal';
 
-import { Layout, Button } from 'antd';
+import { Layout } from 'antd';
 
 
 const { Content } = Layout;
@@ -22,6 +22,7 @@ class IndexMain extends React.Component {
   render() {
     return (
       <Content>
+        <NewPostModal />
         <PostTable category='all'/>
       </Content>
     );

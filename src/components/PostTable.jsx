@@ -28,7 +28,7 @@ class PostTable extends React.Component {
 
     return (
       <Row type="flex" justify="center">
-        <Col span={22} >
+        <Col span={20} >
           <Table
             columns={columns}
             expandedRowRender={record => <p>{record.body}</p>}
