@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes'
 
 const initState = {
-  navigate_category: ''
+  navigate_category: []
 };
 
 export default function navigationReducer(state=initState, action) {
@@ -9,7 +9,7 @@ export default function navigationReducer(state=initState, action) {
     case types.NAVIGATE_CATEGORY:
       return {
         ...state,
-        navigate_category: action.category
+        navigate_category: [action.category]
       };
     default:
       return state

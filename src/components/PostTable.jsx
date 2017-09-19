@@ -27,12 +27,13 @@ class PostTable extends React.Component {
       { title: 'category', dataIndex: 'category', key: 'category' },
       { title: 'voteScore', dataIndex: 'voteScore', key: 'voteScore', sorter: (a, b) => a.voteScore - b.voteScore,},
       { title: 'timestamp', dataIndex: 'timestamp', key: 'timestamp', sorter: (a, b) => a.timestamp - b.timestamp,},
-      { title: 'detail', dataIndex: 'id', key: 'detail', render: (text) => <Link to='/post/'><Button type="primary">Detail</Button></Link>,},
+      { title: 'detail', dataIndex: 'id', key: 'detail', render: (text) => {
+        return <Link to='/post/' onClick={() => this.handleDetailClick(text)}><Button type="primary">Detail</Button></Link>} },
     ];
 
     const data = this.props.postReducer.posts.filter((post) => {
-      if(this.props.category == 'all') return true;
-      return post.category == this.props.navigationReducer.navigate_category
+      if(this.props.category === 'all') return true;
+      return post.category === this.props.navigationReducer.navigate_category
     });
 
     return (
