@@ -15,10 +15,6 @@ class IndexMain extends React.Component {
 
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <Content>
@@ -29,10 +25,4 @@ class IndexMain extends React.Component {
   }
 }
 
-const mapStateToProps = store => (
-  {
-
-  }
-);
-
-export default connect(mapStateToProps, actionCreators)(IndexMain)
+export default IndexMain

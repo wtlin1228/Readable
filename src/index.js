@@ -9,6 +9,7 @@ import configureStore from './store/configureStore';
 import rootSaga from './sagas';
 import Index from './containers/Index';
 import Category from "./containers/Category";
+import PostDetail from "./containers/PostDetail";
 
 const store = configureStore();
 store.runSaga(rootSaga);
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Index} />
           <Route exact path="/category" component={Category} />
+          <Route exact path="/post" component={PostDetail}/>
         </Switch>
       </div>
     </Router>

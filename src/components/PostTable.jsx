@@ -1,15 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as actionCreators from '../actions'
-import { Row, Col, Table } from 'antd';
+import { Row, Col, Table, Button } from 'antd';
+
 
 class PostTable extends React.Component {
   constructor() {
     super();
+
+    this.handleDetailClick = this.handleDetailClick.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllPosts('all');
+  }
+
+  handleDetailClick(id) {
+    console.log(id);
   }
 
   render() {
@@ -19,6 +27,7 @@ class PostTable extends React.Component {
       { title: 'category', dataIndex: 'category', key: 'category' },
       { title: 'voteScore', dataIndex: 'voteScore', key: 'voteScore', sorter: (a, b) => a.voteScore - b.voteScore,},
       { title: 'timestamp', dataIndex: 'timestamp', key: 'timestamp', sorter: (a, b) => a.timestamp - b.timestamp,},
+      { title: 'detail', dataIndex: 'id', key: 'detail', render: (text) => <Link to='/post/'><Button type="primary">Detail</Button></Link>,},
     ];
 
     const data = this.props.postReducer.posts.filter((post) => {

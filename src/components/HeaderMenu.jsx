@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Row, Col, Menu, Icon, Button } from 'antd';
+import { Row, Col, Menu, Icon } from 'antd';
 import * as actionCreators from '../actions'
 
 class HeaderMenu extends React.Component {

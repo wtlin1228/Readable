@@ -150,11 +150,9 @@ class NewPostModal extends React.Component {
 
     const selectOption = this.props.categoryReducer.categories.map( (category) => {
       return(
-        <Option value={category['name']}>{category['name']}</Option>
+        <Option key={category['name']} value={category['name']}>{category['name']}</Option>
       )
     });
-
-
 
     const select = (
       <Select
