@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as actionCreators from '../actions'
 import { Row, Col, Modal, Button, Input, Icon, Select } from 'antd';
 const { TextArea } = Input;
 const Option = Select.Option;
@@ -91,10 +92,7 @@ class NewPostModal extends React.Component {
       }
     ).then((response) => {
       if (response.status >= 200 && response.status < 300) {
-        this.setState({
-          visible: false,
-          confirmLoading: false,
-        });
+        return response;
       } else {
         const error = new Error(`HTTP Error ${response.statusText}`);
         error.status = response.statusText;
@@ -102,6 +100,16 @@ class NewPostModal extends React.Component {
         console.log(error);
         throw error;
       }
+    }).then( () => {
+      this.props.getAllPosts('all');
+      this.setState({
+        visible: false,
+        confirmLoading: false,
+        title: '',
+        description: '',
+        userName: '',
+        selected_category: '',
+      })
     })
   }
 
@@ -111,18 +119,7 @@ class NewPostModal extends React.Component {
       confirmLoading: true,
     });
 
-    console.log('call new post api');
-
     this.callNewPostApi();
-
-    console.log(this.state);
-    this.setState({
-      title: '',
-      description: '',
-      userName: '',
-      selected_category: '',
-    })
-
   }
 
   handleCancel() {
@@ -227,4 +224,4 @@ const mapStateToProps = store => (
   }
 );
 
-export default connect(mapStateToProps, )(NewPostModal)
+export default connect(mapStateToProps, actionCreators)(NewPostModal)
