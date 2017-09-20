@@ -7,8 +7,15 @@ export function* worker(action) {
   const post_detail =  yield call(ApiGetPostDetail, action.post_id);
   const post_comments =  yield call(ApiGetPostComments, action.post_id);
 
-  console.log(post_detail);
-  console.log(post_comments);
+  const d_post = new Date(post_detail['timestamp']);
+  post_detail['timestamp'] = d_post.getFullYear() + '/' + (d_post.getMonth()+1) + '/' + d_post.getDate();
+
+  post_comments.map((comment, index) => {
+    comment['key'] = index+1;
+    const d = new Date(comment['timestamp']);
+    comment['timestamp'] = d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate();
+    return comment
+  });
 
   yield put({
     type: types.GET_POST_DETAIL_DONE,

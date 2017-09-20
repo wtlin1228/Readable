@@ -5,20 +5,15 @@ import * as actionCreators from '../actions'
 import { Row, Col, Table, Button } from 'antd';
 
 
-class PostTable extends React.Component {
+class CommentTable extends React.Component {
   constructor() {
     super();
 
-    this.handleDetailClick = this.handleDetailClick.bind(this);
     this.dateCmp = this.dateCmp.bind(this);
   }
 
   componentDidMount() {
-    this.props.getAllPosts('all');
-  }
 
-  handleDetailClick(id) {
-    this.props.getPostDetail(id);
   }
 
   dateCmp(a, b) {
@@ -29,32 +24,33 @@ class PostTable extends React.Component {
   }
 
   render() {
+    const buttonStyle = {
+      'margin': '5px',
+    };
+
     const columns = [
-      { title: 'title', dataIndex: 'title', key: 'title' },
+      { title: 'comment', dataIndex: 'body', key: 'body' },
       { title: 'author', dataIndex: 'author', key: 'author' },
-      { title: 'category', dataIndex: 'category', key: 'category' },
       { title: 'voteScore', dataIndex: 'voteScore', key: 'voteScore', sorter: (a, b) => a.voteScore - b.voteScore,},
       { title: 'timestamp', dataIndex: 'timestamp', key: 'timestamp',
         sorter: (a, b) => {
           return this.dateCmp(a.timestamp, b.timestamp)
         },
       },
-      { title: 'detail', dataIndex: 'id', key: 'detail', render: (text) => {
-        return <Link to='/post/' onClick={() => this.handleDetailClick(text)}><Button type="primary">Detail</Button></Link>} },
+      { title: 'Action', dataIndex: 'id', key: 'detail', render: (text) => {
+        return [
+          (<Button style={buttonStyle} key='edit' type="primary">Edit</Button>),
+          (<Button style={buttonStyle} key='delete' type="danger">Delete</Button>)
+        ]}},
     ];
 
-    const data = this.props.postReducer.posts.filter((post) => {
-      if(this.props.category === 'all') return true;
-      return post.category == this.props.navigationReducer.navigate_category
-    });
 
     return (
       <Row type="flex" justify="center">
         <Col span={20} >
           <Table
             columns={columns}
-            expandedRowRender={record => <p>{record.body}</p>}
-            dataSource={data}
+            dataSource={this.props.postDetailReducer.comments}
           />
         </Col>
       </Row>
@@ -64,9 +60,8 @@ class PostTable extends React.Component {
 
 const mapStateToProps = store => (
   {
-    postReducer: store.postReducer,
-    navigationReducer: store.navigationReducer,
+    postDetailReducer: store.postDetailReducer,
   }
 );
 
-export default connect(mapStateToProps, actionCreators)(PostTable)
+export default connect(mapStateToProps, actionCreators)(CommentTable)

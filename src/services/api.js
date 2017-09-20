@@ -89,7 +89,6 @@ export function ApiGetPostDetail(post_id) {
       }
     }).then((response) => {
       const data = response.json();
-      console.log(data);
       return data;
     })
   )
@@ -116,7 +115,6 @@ export function ApiGetPostComments(post_id) {
       }
     }).then((response) => {
       const data = response.json();
-      console.log(data);
       return data;
     })
   )
