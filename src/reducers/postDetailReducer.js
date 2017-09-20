@@ -39,33 +39,14 @@ export default function postDetailReducer(state=initState, action) {
         ...state
       };
 
-    case types.DELETE_COMMENT_DONE:
-      const comments = state.comments.filter((comment) => {
-        return comment.id != action.comment_id
-      });
-
-      return {
-        ...state,
-        comments: comments
-      };
-
     case types.UPDATE_COMMENT:
       return {
         ...state
       };
 
-    case types.UPDATE_COMMENT_DONE:
-      const comments = state.comments.map((comment) => {
-        if(comment.id == action.comment_id) {
-          comment.body = action.body
-          return comment
-        }
-        return comment
-      });
-
+    case types.NEW_COMMENT:
       return {
-        ...state,
-        comments: comments
+        ...state
       };
 
     default:

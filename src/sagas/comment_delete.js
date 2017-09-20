@@ -7,8 +7,8 @@ export function* worker(action) {
   yield call(ApiDeleteComment, action.comment_id);
 
   yield put({
-    type: types.DELETE_COMMENT_DONE,
-    comment_id: action.comment_id
+    type: types.GET_POST_DETAIL,
+    post_id: action.post_id
   })
 }
 

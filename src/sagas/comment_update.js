@@ -7,9 +7,8 @@ export function* worker(action) {
   yield call(ApiUpdateComment, action.comment_id, action.body);
 
   yield put({
-    type: types.UPDATE_COMMENT_DONE,
-    comment_id: action.comment_id,
-    body: action.body,
+    type: types.GET_POST_DETAIL,
+    post_id: action.post_id
   })
 }
 
