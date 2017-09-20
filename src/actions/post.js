@@ -13,3 +13,10 @@ export const getPostDetail = (post_id) => (
     post_id
   }
 );
+
+export const deletePost = (post_id) => (
+  {
+    type: types.DELETE_POST,
+    post_id
+  }
+);

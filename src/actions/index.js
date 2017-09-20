@@ -1,5 +1,5 @@
 import { getAllCategory } from "./category";
-import { getAllPosts, getPostDetail } from "./post";
+import { getAllPosts, getPostDetail, deletePost } from "./post";
 import { navigate_category } from "./navigation";
 
 export {
@@ -7,4 +7,5 @@ export {
   getAllPosts,
   navigate_category,
   getPostDetail,
+  deletePost,
 }

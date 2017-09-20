@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import * as actionCreators from '../actions'
 import { Layout, Row, Col, Button } from 'antd';
 import CommentTable from './CommentTable';
 
@@ -9,14 +11,19 @@ class PostDetailMain extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handlePostDelete = this.handlePostDelete.bind(this);
   }
 
   componentDidMount() {
 
   }
 
+  handlePostDelete() {
+    this.props.deletePost(this.props.postDetailReducer.post.id);
+  }
+
   render() {
-    const { post, comments } = this.props.postDetailReducer;
+    const { post } = this.props.postDetailReducer;
 
     const pStyle = {
       'fontSize': '20px',
@@ -30,6 +37,11 @@ class PostDetailMain extends React.Component {
 
     const rowStyle = {
       'margin': '20px'
+    };
+
+    const buttonStyle = {
+      'margin': '15px',
+      'width': '100%',
     };
 
     return (
@@ -54,12 +66,19 @@ class PostDetailMain extends React.Component {
                 <Button type="primary" size='large'>Edit</Button>
               </Col>
               <Col offset={1} span={2}>
-                <Button type="danger" size='large'>Delete</Button>
+                <Link to='/'>
+                  <Button type="danger" size='large' onClick={this.handlePostDelete}>Delete</Button>
+                </Link>
               </Col>
             </Row>
           </Col>
         </Row>
         <CommentTable/>
+        <Row type="flex" justify="center">
+          <Col span={16}>
+            <Button style={buttonStyle} type="primary" size='large'>+ New Comment</Button>
+          </Col>
+        </Row>
       </Content>
     );
   }
@@ -71,4 +90,4 @@ const mapStateToProps = store => (
   }
 );
 
-export default connect(mapStateToProps, )(PostDetailMain)
+export default connect(mapStateToProps, actionCreators)(PostDetailMain)
