@@ -12,18 +12,14 @@ class PostFormMain extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onChangeUserName = this.onChangeUserName.bind(this);
     this.emitTitleEmpty = this.emitTitleEmpty.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.emitDescriptionEmpty = this.emitDescriptionEmpty.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
 
     this.state = {
       title: '',
       description: '',
-      userName: '',
-      selected_category: '',
     }
   }
 
@@ -31,8 +27,6 @@ class PostFormMain extends React.Component {
     this.setState({
       title: this.props.postDetailReducer.post.title,
       description: this.props.postDetailReducer.post.body,
-      userName: this.props.postDetailReducer.post.author,
-      selected_category: this.props.postDetailReducer.post.category,
     });
   }
 
@@ -45,67 +39,37 @@ class PostFormMain extends React.Component {
     this.setState({ title: e.target.value });
   }
 
-  emitUserEmpty() {
-    this.userNameInput.focus();
-    this.setState({ userName: '' });
-  }
-
-  onChangeUserName(e) {
-    this.setState({ userName: e.target.value });
-  }
-
-  emitDescriptionEmpty() {
-    this.descriptionInput.focus();
-    this.setState({ description: '' });
-  }
-
   onChangeDescription(e) {
     this.setState({ description: e.target.value });
   }
 
-  handleSelectChange(value) {
-    this.setState({ selected_category: value });
+
+  handleUpdate() {
+    console.log(this.state);
+    this.props.updatePost(
+      this.props.postDetailReducer.post.id,
+      this.state.title,
+      this.state.description
+    )
   }
 
-
   render() {
-    const { title, description, userName, selected_category } = this.state;
+    const { title, description } = this.state;
 
-    const user_suffix = userName ? <Icon type="close-circle" onClick={this.emitUserEmpty} /> : null;
     const title_suffix = title ? <Icon type="close-circle" onClick={this.emitTitleEmpty} /> : null;
 
     const inputStyle = {
       'marginBottom': '10px',
     };
 
-    const selectStyle = {
-      'width': '200px',
-      'marginBottom': '10px',
+    const rowStyle = {
+      'margin': '15px',
     };
 
-    const selectOption = this.props.categoryReducer.categories.map( (category) => {
-      return(
-        <Option key={category['name']} value={category['name']}>{category['name']}</Option>
-      )
-    });
-
-    const select = (
-      <Select
-        showSearch
-        style={selectStyle}
-        value={selected_category}
-        placeholder="Select a category"
-        optionFilterProp="category"
-        onChange={this.handleSelectChange}
-        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-      >
-        {selectOption}
-      </Select>
-    );
 
     return (
       <Content>
-        <Row>
+        <Row style={rowStyle}>
           <Col offset={4} span={2}>
             <Link to='/post'>
               <Button type="primary" shape="circle" icon="rollback" size='large'/>
@@ -113,7 +77,6 @@ class PostFormMain extends React.Component {
           </Col>
           <Col span={12}>
             <div>
-              {select}
               <Input
                 placeholder="Enter Title"
                 prefix={<Icon type="pushpin" />}
@@ -131,16 +94,14 @@ class PostFormMain extends React.Component {
                 autosize={{ minRows: 8 }}
                 ref={node => this.descriptionInput = node}
               />
-              <Input
-                placeholder="Enter your Name"
-                prefix={<Icon type="user" />}
-                suffix={user_suffix}
-                value={userName}
-                onChange={this.onChangeUserName}
-                style={inputStyle}
-                ref={node => this.userNameInput = node}
-              />
             </div>
+          </Col>
+        </Row>
+        <Row style={rowStyle}>
+          <Col offset={16}>
+            <Link to='/post'>
+              <Button type="primary" icon="sync" ghost onClick={this.handleUpdate}>Update</Button>
+            </Link>
           </Col>
         </Row>
       </Content>
@@ -150,7 +111,6 @@ class PostFormMain extends React.Component {
 
 const mapStateToProps = store => (
   {
-    categoryReducer: store.categoryReducer,
     postDetailReducer: store.postDetailReducer,
   }
 );

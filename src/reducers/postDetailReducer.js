@@ -19,6 +19,21 @@ export default function postDetailReducer(state=initState, action) {
         comments: action.comments,
       };
 
+    case types.UPDATE_POST:
+      return {
+        ...state
+      };
+
+    case types.UPDATE_POST_DONE:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          title: action.title,
+          body: action.body,
+        }
+      };
+
     default:
       return state
   }

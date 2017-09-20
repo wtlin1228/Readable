@@ -20,3 +20,12 @@ export const deletePost = (post_id) => (
     post_id
   }
 );
+
+export const updatePost = (post_id, title, body) => (
+  {
+    type: types.UPDATE_POST,
+    post_id: post_id,
+    title: title,
+    body: body
+  }
+);
