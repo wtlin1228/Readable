@@ -53,6 +53,11 @@ class NewCommentModal extends React.Component {
   }
 
   handleOk() {
+    this.props.newComment(
+      this.props.postDetailReducer.post.id,
+      this.state.description,
+      this.state.userName
+    );
 
     this.setState({
       visible: false,
