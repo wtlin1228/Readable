@@ -61,6 +61,8 @@ class NewCommentModal extends React.Component {
 
     this.setState({
       visible: false,
+      description: '',
+      userName: '',
     });
   }
 

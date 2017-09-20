@@ -48,8 +48,8 @@ class CommentTable extends React.Component {
       },
       { title: 'Action', dataIndex: 'id', key: 'detail', render: (text) => {
         return [
-          (<Button style={buttonStyle} key='edit' type="primary">Edit</Button>),
-          (<Button style={buttonStyle} key='delete' type="danger" onClick={() => this.handleDelete(text)}>Delete</Button>)
+          (<Button style={buttonStyle} key={'edit'+text} type="primary">Edit</Button>),
+          (<Button style={buttonStyle} key={'delete'+text} type="danger" onClick={() => this.handleDelete(text)}>Delete</Button>)
         ]}},
     ];
 

@@ -40,11 +40,6 @@ class PostDetailMain extends React.Component {
       'margin': '20px'
     };
 
-    const buttonStyle = {
-      'margin': '15px',
-      'width': '100%',
-    };
-
     return (
       <Content>
         <Row style={rowStyle}>
