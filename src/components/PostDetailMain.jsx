@@ -63,7 +63,9 @@ class PostDetailMain extends React.Component {
                 <Button type="dashed" size='large'>Bad</Button>
               </Col>
               <Col offset={12} span={2}>
-                <Button type="primary" size='large'>Edit</Button>
+                <Link to='/post/form'>
+                  <Button type="primary" size='large'>Edit</Button>
+                </Link>
               </Col>
               <Col offset={1} span={2}>
                 <Link to='/'>

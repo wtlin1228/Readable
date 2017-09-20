@@ -10,6 +10,7 @@ import rootSaga from './sagas';
 import Index from './containers/Index';
 import Category from "./containers/Category";
 import PostDetail from "./containers/PostDetail";
+import PostForm from "./containers/PostForm";
 
 const store = configureStore();
 store.runSaga(rootSaga);
@@ -22,6 +23,7 @@ ReactDOM.render(
           <Route exact path="/" component={Index} />
           <Route exact path="/category" component={Category} />
           <Route exact path="/post" component={PostDetail}/>
+          <Route exact path="/post/form" component={PostForm}/>
         </Switch>
       </div>
     </Router>
