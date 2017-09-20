@@ -172,3 +172,90 @@ export function ApiUpdatePost(post_id, title, body) {
     })
   )
 }
+
+export function ApiNewComment(post_id, body, author) {
+  return(
+    fetch(
+      'http://localhost:3001/comments',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'wtlin',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: Date.now(),
+          timestamp: Date.now(),
+          body: body,
+          author: author,
+          parentId: post_id,
+        }),
+      }
+    ).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        const error = new Error(`HTTP Error ${response.statusText}`);
+        error.status = response.statusText;
+        error.response = response;
+        console.log(error);
+        throw error;
+      }
+    })
+  )
+}
+
+
+export function ApiDeleteComment(comment_id) {
+  return(
+    fetch(
+      'http://localhost:3001/comments/' + comment_id,
+      {
+        headers: { 'Authorization': 'wtlin' },
+        accept: 'application/json',
+        method: 'DELETE',
+      }
+    ).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        const error = new Error(`HTTP Error ${response.statusText}`);
+        error.status = response.statusText;
+        error.response = response;
+        console.log(error);
+        throw error;
+      }
+    })
+  )
+}
+
+export function ApiUpdateComment(comment_id, body) {
+  return(
+    fetch(
+      'http://localhost:3001/comments/' + comment_id,
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'wtlin',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          body: body,
+          timestamp: Date.now(),
+        }),
+      }
+    ).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        const error = new Error(`HTTP Error ${response.statusText}`);
+        error.status = response.statusText;
+        error.response = response;
+        console.log(error);
+        throw error;
+      }
+    })
+  )
+}

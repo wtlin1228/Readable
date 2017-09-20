@@ -5,6 +5,9 @@ import { watchGetAllPosts } from "./post";
 import { watchGetPostDetail } from "./post_detail";
 import { watchDeletePost } from "./post_delete";
 import { watchPostUpdate } from "./post_update";
+import { watchDeleteComment } from "./comment_delete";
+import { watchCommentUpdate } from "./comment_update";
+import { watchNewComment } from "./comment_new";
 
 export default function* rootSaga() {
   yield all([
@@ -13,5 +16,8 @@ export default function* rootSaga() {
     fork(watchGetPostDetail),
     fork(watchDeletePost),
     fork(watchPostUpdate),
+    fork(watchDeleteComment),
+    fork(watchCommentUpdate),
+    fork(watchNewComment),
   ])
 }
