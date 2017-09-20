@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout } from 'antd';
+import { Layout, Row, Col } from 'antd';
 
 const { Footer } = Layout;
 
@@ -9,9 +9,21 @@ class WebFooter extends React.Component {
   }
 
   render() {
+    const rowStyle = {
+      'backgroundColor': '#404040',
+    };
+
+    const pStyle = {
+      'color': '#8e959c',
+    };
+
     return (
-      <Footer>
-        <p>Hi, This is Footer</p>
+      <Footer style={rowStyle}>
+        <Row type="flex" justify="center" >
+          <Col>
+            <p style={pStyle}>Udacity Readable Project by Leo Lin.</p>
+          </Col>
+        </Row>
       </Footer>
     );
   }
