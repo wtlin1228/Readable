@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import * as actionCreators from '../actions'
-import { Row, Col, Table, Button } from 'antd';
+import { Row, Col, Table, Button, Modal, Input } from 'antd';
+const { TextArea } = Input;
 
 
 class CommentTable extends React.Component {
@@ -11,10 +11,46 @@ class CommentTable extends React.Component {
 
     this.dateCmp = this.dateCmp.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.handleOk = this.handleOk.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+
+    this.state = {
+      visible: false,
+      description: '',
+    }
   }
 
   componentDidMount() {
 
+  }
+
+  showModal() {
+    this.setState({
+      visible: true,
+    });
+  }
+  handleOk(comment_id) {
+    this.props.updateComment(
+      this.props.postDetailReducer.post.id,
+      comment_id,
+      this.state.description
+    );
+
+    this.setState({
+      visible: false,
+      description: '',
+    });
+  }
+  handleCancel() {
+    this.setState({
+      visible: false,
+    });
+  }
+
+  onChangeDescription(e) {
+    this.setState({ description: e.target.value });
   }
 
   handleDelete(comment_id) {
@@ -31,6 +67,7 @@ class CommentTable extends React.Component {
   render() {
     const buttonStyle = {
       'margin': '5px',
+      'width': '100px',
     };
 
     const rowStyle = {
@@ -48,7 +85,25 @@ class CommentTable extends React.Component {
       },
       { title: 'Action', dataIndex: 'id', key: 'detail', render: (text) => {
         return [
-          (<Button style={buttonStyle} key={'edit'+text} type="primary">Edit</Button>),
+          (<div key={'div-edit'+text}>
+            <Button style={buttonStyle} key={'edit'+text} type="primary" onClick={this.showModal}>Edit</Button>
+            <Modal
+              title='Edit Comment'
+              visible={this.state.visible}
+              onOk={() => this.handleOk(text)}
+              onCancel={this.handleCancel}
+              okText='Change'
+              cancelText='Cancel'
+            >
+              <TextArea
+                placeholder="Enter Comment"
+                value={this.state.description}
+                onChange={this.onChangeDescription}
+                autosize
+                ref={node => this.descriptionInput = node}
+              />
+            </Modal>
+          </div>),
           (<Button style={buttonStyle} key={'delete'+text} type="danger" onClick={() => this.handleDelete(text)}>Delete</Button>)
         ]}},
     ];
