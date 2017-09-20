@@ -28,6 +28,10 @@ class CommentTable extends React.Component {
       'margin': '5px',
     };
 
+    const rowStyle = {
+      'margin': '20px'
+    };
+
     const columns = [
       { title: 'comment', dataIndex: 'body', key: 'body' },
       { title: 'author', dataIndex: 'author', key: 'author' },
@@ -46,7 +50,7 @@ class CommentTable extends React.Component {
 
 
     return (
-      <Row type="flex" justify="center">
+      <Row type="flex" justify="center" style={rowStyle}>
         <Col span={20} >
           <Table
             columns={columns}

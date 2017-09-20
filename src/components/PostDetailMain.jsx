@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import * as actionCreators from '../actions'
 import { Layout, Row, Col, Button } from 'antd';
 import CommentTable from './CommentTable';
+import NewCommentModal from './NewCommentModal';
 
 const { Content } = Layout;
 
@@ -56,31 +57,21 @@ class PostDetailMain extends React.Component {
           <Col offset={2} span={12}>
             <p style={bodyStyle}>{post.body}</p>
             <Row style={rowStyle}>
-              <Col span={2}>
-                <Button type="dashed" size='large'>Good</Button>
-              </Col>
-              <Col offset={1} span={2}>
-                <Button type="dashed" size='large'>Bad</Button>
-              </Col>
               <Col offset={12} span={2}>
                 <Link to='/post/form'>
-                  <Button type="primary" size='large'>Edit</Button>
+                  <Button type="primary" size='large' ghost>Edit Post</Button>
                 </Link>
               </Col>
-              <Col offset={1} span={2}>
+              <Col offset={2} span={2}>
                 <Link to='/'>
-                  <Button type="danger" size='large' onClick={this.handlePostDelete}>Delete</Button>
+                  <Button type="danger" size='large' ghost onClick={this.handlePostDelete}>Delete Post</Button>
                 </Link>
               </Col>
             </Row>
           </Col>
         </Row>
         <CommentTable/>
-        <Row type="flex" justify="center">
-          <Col span={16}>
-            <Button style={buttonStyle} type="primary" size='large'>+ New Comment</Button>
-          </Col>
-        </Row>
+        <NewCommentModal />
       </Content>
     );
   }

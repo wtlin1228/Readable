@@ -115,7 +115,6 @@ class NewPostModal extends React.Component {
 
   handleOk() {
     this.setState({
-      ModalText: 'The modal will be closed after two seconds',
       confirmLoading: true,
     });
 
@@ -123,7 +122,6 @@ class NewPostModal extends React.Component {
   }
 
   handleCancel() {
-    console.log('Clicked cancel button');
     this.setState({
       visible: false,
     });
@@ -173,7 +171,7 @@ class NewPostModal extends React.Component {
           <div>
             <Button type="primary" size="large" onClick={this.showModal}>+ New</Button>
             <Modal
-              title="Title"
+              title="New Post"
               visible={visible}
               onOk={this.handleOk}
               confirmLoading={confirmLoading}
