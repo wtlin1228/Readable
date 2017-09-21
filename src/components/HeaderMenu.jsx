@@ -21,7 +21,6 @@ class HeaderMenu extends React.Component {
   }
 
   handleClick(e) {
-    console.log('click ', e);
     this.props.navigate_category(e.key);
     this.setState({
       current: e.key,

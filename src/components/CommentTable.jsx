@@ -15,6 +15,8 @@ class CommentTable extends React.Component {
     this.handleOk = this.handleOk.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.handleVoteUp = this.handleVoteUp.bind(this);
+    this.handleVoteDown = this.handleVoteDown.bind(this);
 
     this.state = {
       visible: false,
@@ -57,6 +59,14 @@ class CommentTable extends React.Component {
     this.props.deleteComment(this.props.postDetailReducer.post.id, comment_id)
   }
 
+  handleVoteUp(comment_id) {
+    this.props.likeTheComment(this.props.postDetailReducer.post.id, comment_id);
+  }
+
+  handleVoteDown(comment_id) {
+    this.props.dislikeTheComment(this.props.postDetailReducer.post.id, comment_id);
+  }
+
   dateCmp(a, b) {
     const d1 = a.split('/');
     const d2 = b.split('/');
@@ -70,14 +80,26 @@ class CommentTable extends React.Component {
       'width': '100px',
     };
 
+    const voteStyle = {
+      'margin': '10px',
+    };
+
     const rowStyle = {
       'margin': '20px'
     };
 
     const columns = [
+      { title: 'vote', dataIndex: 'id', key: 'vote', render: (text) => {
+        return (
+          <div>
+            <Button type="primary" shape="circle" icon="like" size="large" style={voteStyle} onClick={() => this.handleVoteUp(text)}/>
+            <Button type="primary" shape="circle" icon="dislike" size="large" style={voteStyle} onClick={() => this.handleVoteDown(text)}/>
+          </div>
+        )
+      }},
       { title: 'comment', dataIndex: 'body', key: 'body' },
       { title: 'author', dataIndex: 'author', key: 'author' },
-      { title: 'voteScore', dataIndex: 'voteScore', key: 'voteScore', sorter: (a, b) => a.voteScore - b.voteScore,},
+      { title: 'voteScore', dataIndex: 'voteScore', key: 'id', sorter: (a, b) => a.voteScore - b.voteScore,},
       { title: 'timestamp', dataIndex: 'timestamp', key: 'timestamp',
         sorter: (a, b) => {
           return this.dateCmp(a.timestamp, b.timestamp)
@@ -114,6 +136,7 @@ class CommentTable extends React.Component {
         <Col span={20} >
           <Table
             columns={columns}
+            rowKey="id"
             dataSource={this.props.postDetailReducer.comments}
           />
         </Col>
