@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actionCreators from '../actions'
 import { Row, Col, Table, Button } from 'antd';
-
+import PostBadge from './PostBadge';
 
 class PostTable extends React.Component {
   constructor() {
@@ -31,6 +31,11 @@ class PostTable extends React.Component {
   render() {
     const columns = [
       { title: 'title', dataIndex: 'title', key: 'title' },
+      { title: 'comments', dataIndex: 'id', key: 'comments' ,
+        render: (text) => {
+          return <PostBadge post_id={text}/>
+        }
+      },
       { title: 'author', dataIndex: 'author', key: 'author' },
       { title: 'category', dataIndex: 'category', key: 'category' },
       { title: 'voteScore', dataIndex: 'voteScore', key: 'voteScore', sorter: (a, b) => a.voteScore - b.voteScore,},
