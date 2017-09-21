@@ -82,7 +82,7 @@ class NewPostModal extends React.Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          id: Date.now(),
+          id: toString(Date.now()),
           timestamp: Date.now(),
           title: this.state.title,
           body: this.state.description,

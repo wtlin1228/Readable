@@ -15,6 +15,8 @@ export function* worker(action) {
   // sort the posts by voteScore
   response.sort(function(a, b){return b['voteScore'] - a['voteScore'] });
 
+  console.log(response);
+
   yield put({
     type: types.GET_ALL_POSTS_DONE,
     posts: response,
