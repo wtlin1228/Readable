@@ -49,6 +49,42 @@ export default function postDetailReducer(state=initState, action) {
         ...state
       };
 
+    case types.LIKE_THE_POST:
+      return {
+        ...state
+      };
+
+    case types.LIKE_THE_POST_DONE:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          voteScore: state.voteScore + 1
+        }
+      };
+
+    case types.LIKE_THE_COMMENT:
+      return {
+        ...state
+      };
+
+    case types.DISLIKE_THE_POST:
+      return {
+        ...state
+      };
+
+    case types.DISLIKE_THE_POST_DONE:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          voteScore: state.voteScore - 1
+        }
+      };
+
+
+
+
     default:
       return state
   }

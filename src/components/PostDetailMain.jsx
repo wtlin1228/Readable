@@ -13,6 +13,8 @@ class PostDetailMain extends React.Component {
     super(props);
 
     this.handlePostDelete = this.handlePostDelete.bind(this);
+    this.handleVoteUp = this.handleVoteUp.bind(this);
+    this.handleVoteDown = this.handleVoteDown.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +23,14 @@ class PostDetailMain extends React.Component {
 
   handlePostDelete() {
     this.props.deletePost(this.props.postDetailReducer.post.id);
+  }
+
+  handleVoteUp() {
+    this.props.likeThePost(this.props.postDetailReducer.post.id);
+  }
+
+  handleVoteDown() {
+    this.props.dislikeThePost(this.props.postDetailReducer.post.id);
   }
 
   render() {
@@ -44,10 +54,26 @@ class PostDetailMain extends React.Component {
       <Content>
         <Row style={rowStyle}>
           <Col offset={2} span={6}>
-            <p style={pStyle}>{'Title : ' + post.title}</p>
+            <Row>
+              <p style={pStyle}>{'Title : ' + post.title}</p>
+            </Row>
+            <Row>
             <p style={pStyle}>{'Author : ' + post.author}</p>
-            <p style={pStyle}>{'Vote Score : ' + post.voteScore}</p>
-            <p style={pStyle}>{'Time : ' + post.timestamp}</p>
+            </Row>
+            <Row>
+              <Col span={10}>
+                <p style={pStyle}>{'Vote Score : ' + post.voteScore}</p>
+              </Col>
+              <Col span={3}>
+                <Button type="primary" shape="circle" icon="like" size="large" onClick={this.handleVoteUp}/>
+              </Col>
+              <Col span={3}>
+                <Button type="primary" shape="circle" icon="dislike" size="large" onClick={this.handleVoteDown}/>
+              </Col>
+            </Row>
+            <Row>
+              <p style={pStyle}>{'Time : ' + post.timestamp}</p>
+            </Row>
           </Col>
           <Col offset={2} span={12}>
             <p style={bodyStyle}>{post.body}</p>
