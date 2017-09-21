@@ -14,9 +14,9 @@ class WebHeader extends React.Component {
     };
 
     return (
-      <Header style={headerStyle}>
+      <header className="ant-layout-header" style={headerStyle}>
         <HeaderMenu />
-      </Header>
+      </header>
     );
   }
 }
