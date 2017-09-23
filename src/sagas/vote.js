@@ -39,6 +39,22 @@ export function* dislikeCommentWorker(action) {
   })
 }
 
+export function* likeThePostRootWorker(action) {
+  yield call(ApiVoteUpPost, action.post_id);
+
+  yield put({
+    type: types.GET_ALL_POSTS
+  })
+}
+
+export function* dislikeThePostRootWorker(action) {
+  yield call(ApiVoteDownPost, action.post_id);
+
+  yield put({
+    type: types.GET_ALL_POSTS
+  })
+}
+
 
 export function* watchLikePost() {
   yield takeLatest(types.LIKE_THE_POST, likePostWorker);
@@ -54,4 +70,12 @@ export function* watchLikeComment() {
 
 export function* watchDisLikeComment() {
   yield takeLatest(types.DISLIKE_THE_COMMENT, dislikeCommentWorker);
+}
+
+export function* watchLikePostRoot() {
+  yield takeLatest(types.LIKE_THE_POST_ROOT, likeThePostRootWorker);
+}
+
+export function* watchDisLikePostRoot() {
+  yield takeLatest(types.DISLIKE_THE_POST_ROOT, dislikeThePostRootWorker);
 }

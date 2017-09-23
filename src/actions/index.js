@@ -2,7 +2,7 @@ import { getAllCategory } from "./category";
 import { getAllPosts, getPostDetail, deletePost, updatePost } from "./post";
 import { navigate_category } from "./navigation";
 import { newComment, updateComment, deleteComment } from "./comment";
-import { likeThePost, dislikeThePost, likeTheComment, dislikeTheComment } from "./vote";
+import { likeThePost, dislikeThePost, likeTheComment, dislikeTheComment, likeThePostRoot, dislikeThePostRoot } from "./vote";
 
 export {
   getAllCategory,
@@ -18,4 +18,6 @@ export {
   dislikeThePost,
   likeTheComment,
   dislikeTheComment,
+  likeThePostRoot,
+  dislikeThePostRoot,
 }

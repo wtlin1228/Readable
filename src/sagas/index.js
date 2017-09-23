@@ -8,7 +8,7 @@ import { watchPostUpdate } from "./post_update";
 import { watchDeleteComment } from "./comment_delete";
 import { watchCommentUpdate } from "./comment_update";
 import { watchNewComment } from "./comment_new";
-import { watchLikePost ,watchDisLikePost ,watchLikeComment ,watchDisLikeComment } from "./vote";
+import { watchLikePost ,watchDisLikePost ,watchLikeComment ,watchDisLikeComment, watchLikePostRoot, watchDisLikePostRoot } from "./vote";
 
 export default function* rootSaga() {
   yield all([
@@ -24,5 +24,7 @@ export default function* rootSaga() {
     fork(watchDisLikePost),
     fork(watchLikeComment),
     fork(watchDisLikeComment),
+    fork(watchLikePostRoot),
+    fork(watchDisLikePostRoot),
   ])
 }

@@ -11,6 +11,8 @@ class PostTable extends React.Component {
 
     this.handleDetailClick = this.handleDetailClick.bind(this);
     this.dateCmp = this.dateCmp.bind(this);
+    this.handleVoteUp = this.handleVoteUp.bind(this);
+    this.handleVoteDown = this.handleVoteDown.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +23,14 @@ class PostTable extends React.Component {
     this.props.getPostDetail(id);
   }
 
+  handleVoteUp(post_id) {
+    this.props.likeThePostRoot(post_id);
+  }
+
+  handleVoteDown(post_id) {
+    this.props.dislikeThePostRoot(post_id);
+  }
+
   dateCmp(a, b) {
     const d1 = a.split('/');
     const d2 = b.split('/');
@@ -29,6 +39,10 @@ class PostTable extends React.Component {
   }
 
   render() {
+    const voteStyle = {
+      'margin': '10px',
+    };
+
     const columns = [
       { title: 'title', dataIndex: 'title', key: 'title' },
       { title: 'comments', dataIndex: 'id', key: 'comments' ,
@@ -39,6 +53,14 @@ class PostTable extends React.Component {
       { title: 'author', dataIndex: 'author', key: 'author' },
       { title: 'category', dataIndex: 'category', key: 'category' },
       { title: 'voteScore', dataIndex: 'voteScore', key: 'voteScore', sorter: (a, b) => a.voteScore - b.voteScore,},
+      { title: 'vote', dataIndex: 'id', key: 'vote', render: (text) => {
+        return (
+          <div>
+            <Button type="primary" shape="circle" icon="like" size="large" style={voteStyle} onClick={() => this.handleVoteUp(text)}/>
+            <Button type="primary" shape="circle" icon="dislike" size="large" style={voteStyle} onClick={() => this.handleVoteDown(text)}/>
+          </div>
+        )
+      }},
       { title: 'timestamp', dataIndex: 'timestamp', key: 'timestamp',
         sorter: (a, b) => {
           return this.dateCmp(a.timestamp, b.timestamp)
