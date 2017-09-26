@@ -22,7 +22,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Index} />
           <Route exact path="/:category" component={Category} />
-          <Route exact path="/:category/:post_id" component={PostDetail}/>
+          <Route exact path="/:category/:post_id" component={PostDetail} something="foo"/>
           <Route exact path="/:category/:post_id/edit" component={PostForm}/>
         </Switch>
       </div>

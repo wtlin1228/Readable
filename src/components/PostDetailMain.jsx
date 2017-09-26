@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import * as actionCreators from '../actions'
 import { Layout, Row, Col, Button } from 'antd';
 import CommentTable from './CommentTable';
@@ -15,10 +15,11 @@ class PostDetailMain extends React.Component {
     this.handlePostDelete = this.handlePostDelete.bind(this);
     this.handleVoteUp = this.handleVoteUp.bind(this);
     this.handleVoteDown = this.handleVoteDown.bind(this);
+
   }
 
   componentDidMount() {
-
+    console.log(this.props);
   }
 
   handlePostDelete() {
@@ -104,4 +105,4 @@ const mapStateToProps = store => (
   }
 );
 
-export default connect(mapStateToProps, actionCreators)(PostDetailMain)
+export default withRouter(connect(mapStateToProps, actionCreators)(PostDetailMain))
