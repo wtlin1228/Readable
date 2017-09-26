@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions'
-import { Row, Col, Modal, Button, Input, Icon, Select } from 'antd';
+import { Row, Col, Modal, Button, Input, Icon, Select, message } from 'antd';
 const { TextArea } = Input;
 const Option = Select.Option;
 
@@ -125,6 +125,11 @@ class NewPostModal extends React.Component {
   }
 
   handleOk() {
+    if (this.state.selected_category === ''){
+      message.error('Please select a category');
+      return
+    }
+
     this.setState({
       confirmLoading: true,
     });
