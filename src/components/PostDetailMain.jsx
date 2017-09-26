@@ -79,7 +79,7 @@ class PostDetailMain extends React.Component {
             <p style={bodyStyle}>{post.body}</p>
             <Row style={rowStyle}>
               <Col offset={12} span={2}>
-                <Link to='/post/form'>
+                <Link to={'/' + post.category + '/' + post.id + '/' + 'edit'}>
                   <Button type="primary" size='large' ghost>Edit Post</Button>
                 </Link>
               </Col>

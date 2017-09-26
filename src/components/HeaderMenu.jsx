@@ -35,7 +35,7 @@ class HeaderMenu extends React.Component {
     const menuItem = this.props.categoryReducer.categories.map( (category) => {
       return(
         <Menu.Item key={category['name']}>
-          <Link to='/category'/>
+          <Link to={'/'+category['name']}/>
           <Icon type="tag-o"/>{category['name']}
         </Menu.Item>
       )

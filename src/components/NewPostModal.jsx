@@ -20,6 +20,7 @@ class NewPostModal extends React.Component {
     this.emitDescriptionEmpty = this.emitDescriptionEmpty.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.guid = this.guid.bind(this);
 
     this.state = {
       visible: false,
@@ -71,6 +72,16 @@ class NewPostModal extends React.Component {
     });
   }
 
+  guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
   callNewPostApi() {
     fetch(
       'http://localhost:3001/posts',
@@ -82,7 +93,7 @@ class NewPostModal extends React.Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          id: toString(Date.now()),
+          id: this.guid(),
           timestamp: Date.now(),
           title: this.state.title,
           body: this.state.description,

@@ -21,9 +21,9 @@ ReactDOM.render(
       <div className="app">
         <Switch>
           <Route exact path="/" component={Index} />
-          <Route exact path="/category" component={Category} />
-          <Route exact path="/post" component={PostDetail}/>
-          <Route exact path="/post/form" component={PostForm}/>
+          <Route exact path="/:category" component={Category} />
+          <Route exact path="/:category/:post_id" component={PostDetail}/>
+          <Route exact path="/:category/:post_id/edit" component={PostForm}/>
         </Switch>
       </div>
     </Router>

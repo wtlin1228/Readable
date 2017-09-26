@@ -82,7 +82,12 @@ export default function postDetailReducer(state=initState, action) {
         }
       };
 
-
+    case types.DELETE_POST:
+      return {
+        ...state,
+        post: {},
+        comments: [],
+      };
 
 
     default:

@@ -39,6 +39,8 @@ class PostTable extends React.Component {
   }
 
   render() {
+    const { navigate_category } = this.props.navigationReducer;
+
     const voteStyle = {
       'margin': '10px',
     };
@@ -66,13 +68,15 @@ class PostTable extends React.Component {
           return this.dateCmp(a.timestamp, b.timestamp)
         },
       },
-      { title: 'detail', dataIndex: 'id', key: 'detail', render: (text) => {
-        return <Link to='/post/' onClick={() => this.handleDetailClick(text)}><Button type="primary">Detail</Button></Link>} },
+      { title: 'detail', dataIndex: 'id', key: 'detail', render: (text, id) => {
+          return <Link to={id.category + '/' + text} onClick={() => this.handleDetailClick(text)}><Button type="primary">Detail</Button></Link>
+        }
+      },
     ];
 
     const data = this.props.postReducer.posts.filter((post) => {
       if(this.props.category === 'all') return true;
-      return post.category == this.props.navigationReducer.navigate_category
+      return post.category == navigate_category
     });
 
     return (

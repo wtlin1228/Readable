@@ -55,6 +55,7 @@ class PostFormMain extends React.Component {
 
   render() {
     const { title, description } = this.state;
+    const { post } = this.props.postDetailReducer;
 
     const title_suffix = title ? <Icon type="close-circle" onClick={this.emitTitleEmpty} /> : null;
 
@@ -71,7 +72,7 @@ class PostFormMain extends React.Component {
       <Content>
         <Row style={rowStyle}>
           <Col offset={4} span={2}>
-            <Link to='/post'>
+            <Link to={ '/' + post.category + '/' + post.id }>
               <Button type="primary" shape="circle" icon="rollback" size='large'/>
             </Link>
           </Col>
@@ -99,7 +100,7 @@ class PostFormMain extends React.Component {
         </Row>
         <Row style={rowStyle}>
           <Col offset={16}>
-            <Link to='/post'>
+            <Link to={ '/' + post.category + '/' + post.id }>
               <Button type="primary" icon="sync" ghost onClick={this.handleUpdate}>Update</Button>
             </Link>
           </Col>
