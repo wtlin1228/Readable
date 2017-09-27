@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import * as actionCreators from '../actions'
 import { Layout, Row, Col, Button } from 'antd';
 import CommentTable from './CommentTable';
@@ -16,12 +16,25 @@ class PostDetailMain extends React.Component {
     this.handleVoteUp = this.handleVoteUp.bind(this);
     this.handleVoteDown = this.handleVoteDown.bind(this);
 
+    this.state = {
+      redirect: false,
+    }
   }
 
   componentDidMount() {
     const { url } = this.props.match;
 
     this.props.getPostDetail(url.split('/')[2]);
+
+    const post = this.props.postReducer.posts.filter((post) => {
+      return post.id == url.split('/')[2]
+    });
+
+    if (post.length === 0){
+      this.setState({
+        redirect: true
+      })
+    }
   }
 
   handlePostDelete() {
@@ -37,6 +50,12 @@ class PostDetailMain extends React.Component {
   }
 
   render() {
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/'/>;
+    }
+
     const { post } = this.props.postDetailReducer;
 
     const pStyle = {
@@ -103,6 +122,7 @@ class PostDetailMain extends React.Component {
 
 const mapStateToProps = store => (
   {
+    postReducer: store.postReducer,
     postDetailReducer: store.postDetailReducer,
   }
 );

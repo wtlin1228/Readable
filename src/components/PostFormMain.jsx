@@ -1,7 +1,7 @@
 import React from 'react';
 import * as actionCreators from '../actions'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 
 import { Layout, Row, Col, Button, Input, Icon, Select } from 'antd';
 const { Content } = Layout;
@@ -20,10 +20,25 @@ class PostFormMain extends React.Component {
     this.state = {
       title: '',
       description: '',
+      redirect: false,
     }
   }
 
   componentDidMount() {
+    const { url } = this.props.match;
+
+    this.props.getPostDetail(url.split('/')[2]);
+
+    const post = this.props.postReducer.posts.filter((post) => {
+      return post.id == url.split('/')[2]
+    });
+
+    if (post.length === 0){
+      this.setState({
+        redirect: true
+      })
+    }
+
     this.setState({
       title: this.props.postDetailReducer.post.title,
       description: this.props.postDetailReducer.post.body,
@@ -54,6 +69,12 @@ class PostFormMain extends React.Component {
   }
 
   render() {
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/'/>;
+    }
+
     const { title, description } = this.state;
     const { post } = this.props.postDetailReducer;
 
@@ -112,8 +133,9 @@ class PostFormMain extends React.Component {
 
 const mapStateToProps = store => (
   {
+    postReducer: store.postReducer,
     postDetailReducer: store.postDetailReducer,
   }
 );
 
-export default connect(mapStateToProps, actionCreators)(PostFormMain)
+export default withRouter(connect(mapStateToProps, actionCreators)(PostFormMain))
