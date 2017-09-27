@@ -19,7 +19,9 @@ class PostDetailMain extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    const { url } = this.props.match;
+
+    this.props.getPostDetail(url.split('/')[2]);
   }
 
   handlePostDelete() {

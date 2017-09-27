@@ -5,7 +5,13 @@ import { ApiGetPostDetail, ApiGetPostComments } from '../services/api'
 
 export function* worker(action) {
   const post_detail =  yield call(ApiGetPostDetail, action.post_id);
-  const post_comments =  yield call(ApiGetPostComments, action.post_id);
+  let post_comments = [];
+
+  if (post_detail['id'] == undefined){
+    post_comments = []
+  } else {
+    post_comments =  yield call(ApiGetPostComments, action.post_id);
+  }
 
   const d_post = new Date(post_detail['timestamp']);
   post_detail['timestamp'] = d_post.getFullYear() + '/' + (d_post.getMonth()+1) + '/' + d_post.getDate();

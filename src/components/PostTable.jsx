@@ -9,7 +9,6 @@ class PostTable extends React.Component {
   constructor() {
     super();
 
-    this.handleDetailClick = this.handleDetailClick.bind(this);
     this.dateCmp = this.dateCmp.bind(this);
     this.handleVoteUp = this.handleVoteUp.bind(this);
     this.handleVoteDown = this.handleVoteDown.bind(this);
@@ -17,10 +16,6 @@ class PostTable extends React.Component {
 
   componentDidMount() {
     this.props.getAllPosts('all');
-  }
-
-  handleDetailClick(id) {
-    this.props.getPostDetail(id);
   }
 
   handleVoteUp(post_id) {
@@ -69,7 +64,7 @@ class PostTable extends React.Component {
         },
       },
       { title: 'detail', dataIndex: 'id', key: 'detail', render: (text, id) => {
-          return <Link to={id.category + '/' + text} onClick={() => this.handleDetailClick(text)}><Button type="primary">Detail</Button></Link>
+          return <Link to={id.category + '/' + text} ><Button type="primary">Detail</Button></Link>
         }
       },
     ];
@@ -83,6 +78,7 @@ class PostTable extends React.Component {
       <Row type="flex" justify="center">
         <Col span={20} >
           <Table
+            rowKey="id"
             columns={columns}
             expandedRowRender={record => <p>{record.body}</p>}
             dataSource={data}
