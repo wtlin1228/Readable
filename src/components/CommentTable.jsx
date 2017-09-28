@@ -21,6 +21,7 @@ class CommentTable extends React.Component {
     this.state = {
       visible: false,
       description: '',
+      comment_id: '',
     }
   }
 
@@ -28,15 +29,17 @@ class CommentTable extends React.Component {
 
   }
 
-  showModal() {
+  showModal(comment_id, description) {
     this.setState({
       visible: true,
+      description: description,
+      comment_id: comment_id,
     });
   }
-  handleOk(comment_id) {
+  handleOk() {
     this.props.updateComment(
       this.props.postDetailReducer.post.id,
-      comment_id,
+      this.state.comment_id,
       this.state.description
     );
 
@@ -105,10 +108,10 @@ class CommentTable extends React.Component {
           return this.dateCmp(a.timestamp, b.timestamp)
         },
       },
-      { title: 'Action', dataIndex: 'id', key: 'detail', render: (text) => {
+      { title: 'Action', dataIndex: 'id', key: 'detail', render: (text, id) => {
         return [
           (<div key={'div-edit'+text}>
-            <Button style={buttonStyle} key={'edit'+text} type="primary" onClick={this.showModal}>Edit</Button>
+            <Button style={buttonStyle} key={'edit'+text} type="primary" onClick={() => this.showModal(text, id['body'])}>Edit</Button>
             <Modal
               title='Edit Comment'
               visible={this.state.visible}
@@ -127,7 +130,8 @@ class CommentTable extends React.Component {
             </Modal>
           </div>),
           (<Button style={buttonStyle} key={'delete'+text} type="danger" onClick={() => this.handleDelete(text)}>Delete</Button>)
-        ]}},
+        ]}
+      },
     ];
 
 

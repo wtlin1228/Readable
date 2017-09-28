@@ -80,7 +80,7 @@ class PostDetailMain extends React.Component {
               <p style={pStyle}>{'Title : ' + post.title}</p>
             </Row>
             <Row>
-            <p style={pStyle}>{'Author : ' + post.author}</p>
+              <p style={pStyle}>{'Author : ' + post.author}</p>
             </Row>
             <Row>
               <Col span={10}>
