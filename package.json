@@ -35,7 +35,7 @@
     "file-loader": "^0.11.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.4",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "react-test-renderer": "^15.6.1",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
